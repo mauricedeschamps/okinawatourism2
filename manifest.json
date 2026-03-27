@@ -1,0 +1,20 @@
+{
+  "name": "Okinawa Travel Guide",
+  "short_name": "Okinawa",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0066cc",
+  "background_color": "#f8f9fa",
+  "icons": [
+    {
+      "src": "icons/icon-192.jpg",
+      "type": "image/jpeg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icons/icon-512.jpg",
+      "type": "image/jpeg",
+      "sizes": "512x512"
+    }
+  ]
+}
