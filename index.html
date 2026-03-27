@@ -115,7 +115,8 @@
             transform: translateY(-3px);
         }
         
-        .sponsor-image {
+        /* スポンサー画像用クラス（ご要望の ad-img を使用） */
+        .ad-img {
             max-height: 120px;
             width: auto;
             max-width: 260px;
@@ -134,7 +135,7 @@
         }
         
         @media (max-width: 768px) {
-            .sponsor-image {
+            .ad-img {
                 max-height: 80px;
                 max-width: 180px;
             }
@@ -492,7 +493,7 @@
     <span class="japanese">アプリをインストール</span>
 </button>
 
-<!-- 上部スポンサー枠（後から簡単に編集） -->
+<!-- 上部スポンサー枠 -->
 <div class="sponsor-top" id="sponsorTop"></div>
 
 <div class="container">
@@ -549,10 +550,11 @@
     </div>
 </div>
 
+<!-- 下部スポンサー枠 -->
 <div class="sponsor-bottom" id="sponsorBottom"></div>
 
 <footer>
-    <div class="language-content english active">Contact us<br><a href="mailto:mementomorikatsu@gmail.com">mementomorikatsu@gmail.com</a></div>
+    <div class="language-content english active">Contact me<br><a href="mailto:mementomorikatsu@gmail.com">mementomorikatsu@gmail.com</a></div>
     <div class="language-content japanese">連絡先<br><a href="mailto:mementomorikatsu@gmail.com">mementomorikatsu@gmail.com</a></div>
 </footer>
 
@@ -560,20 +562,21 @@
     // ============================================================
     // ★ スポンサー設定 (画像とURLを簡単に変更できます) ★
     // ============================================================
+    // 上部スポンサー（例：沖縄観光協会）
     const sponsorTopData = [
         {
-            imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSPbgYlnDUSOwY48wbGMvcIrJNLZFYYgpsme7mWnxf7Vpha7ZRlsqMAdsp&s=10",
-            linkUrl: "https://visitokinawajapan.com/",
-            altText: "Visit Okinawa Japan"
+            imageUrl: "https://placehold.co/300x120/0066cc/white?text=Okinawa+Tourism",  // ここを自分の画像パスに変更可能
+            linkUrl: "https://www.visitokinawa.jp/",
+            altText: "Okinawa Tourism Bureau"
         }
     ];
+    
+    // 下部スポンサー（ご自身の画像を使用）
     const sponsorBottomData = [
         {
-            
-      <img class="ad-img" src="images/myplace.png" alt="myplace">       
-
-            linkUrl: "https://myplace-guesthouse.com/ja/",
-            altText: "North of Tomari Port"
+            imageUrl: "images/myplace.png",   // ご自身の画像パス
+            linkUrl: "https://www.example.com/",  // リンク先（必要に応じて変更）
+            altText: "myplace"                     // 代替テキスト
         }
     ];
     // ============================================================
@@ -653,22 +656,24 @@
     let currentSpot = null;
     let deferredPrompt;
 
-    // スポンサー表示
+    // スポンサー表示（ad-img クラスを使用）
     function renderSponsors() {
         const topContainer = document.getElementById('sponsorTop');
         const bottomContainer = document.getElementById('sponsorBottom');
+        
         function buildHTML(sponsors) {
             if (!sponsors || sponsors.length === 0) return '<p style="opacity:0.6;">スポンサー募集中</p>';
             let html = '<div class="sponsor-container">';
             sponsors.forEach(sp => {
                 html += `<a href="${sp.linkUrl}" target="_blank" rel="noopener" class="sponsor-item">
-                            <img src="${sp.imageUrl}" alt="${sp.altText}" class="sponsor-image" loading="lazy">
+                            <img class="ad-img" src="${sp.imageUrl}" alt="${sp.altText}">
                             <span class="sponsor-name">${sp.altText}</span>
                          </a>`;
             });
             html += '</div>';
             return html;
         }
+        
         topContainer.innerHTML = buildHTML(sponsorTopData);
         bottomContainer.innerHTML = buildHTML(sponsorBottomData);
     }
